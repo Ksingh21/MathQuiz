@@ -17,14 +17,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var level: UILabel!
     @IBOutlet weak var score: UILabel!
     @IBOutlet weak var round: UILabel!
+    
     var randNum = 0
     var randNum1 = 0
     var randNum2 = 0
-
     var realAnswer = 0
     var questionCount = 0
-
-
 
     func setNum() {
         randNum = Int(arc4random_uniform(4))
@@ -50,7 +48,6 @@ class ViewController: UIViewController {
         number1.text = String(randNum1)
         number2.text = String(randNum2)
     }
-
 
     func findRealAnswer() {
         if (randNum == 0) {
@@ -80,9 +77,6 @@ class ViewController: UIViewController {
 
     }
 
-
-
-
     func displayMsg() {
         if (answerProvided.text == "") {
             let emptyAlert = UIAlertController(title: "Error", message: "Please enter a number.", preferredStyle: .alert)
@@ -90,7 +84,6 @@ class ViewController: UIViewController {
             emptyAlert.addAction(emptyAction)
             present(emptyAlert, animated: true, completion: nil)
         }
-        
         
         if (Int(round.text!)! % 3 == 0 ) {
         let alert = UIAlertController(title: "You Got it!", message: "You Won \(score.text ?? "") out of \(questionCount) times in this Level", preferredStyle: .alert)
@@ -102,11 +95,6 @@ class ViewController: UIViewController {
         questionCount = 0
         }
     }
-
-
-
-
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,6 +113,4 @@ class ViewController: UIViewController {
         setNum()
         displayMsg()
     }
-
-
 }
