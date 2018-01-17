@@ -22,11 +22,12 @@ class ViewController: UIViewController {
     var randNum2 = 0
 
     var realAnswer = 0
+    var questionCount = 0
 
 
 
     func setNum() {
-        randNum = Int(arc4random_uniform(3))
+        randNum = Int(arc4random_uniform(4))
         randNum1 = Int(arc4random_uniform(10))
         randNum2 = Int(arc4random_uniform(10))
 
@@ -69,11 +70,12 @@ class ViewController: UIViewController {
 
     func check() {
         if (Int(realAnswer) == Int(answerProvided.text!)) {
-            level.text = String(Int(score.text!)! / 3)
             score.text = String(Int(score.text!)! + 1)
             round.text = String(Int(round.text!)! + 1)
+            questionCount += 1
         } else {
             round.text = String(Int(round.text!)! + 1)
+            questionCount += 1
         }
 
     }
@@ -88,11 +90,15 @@ class ViewController: UIViewController {
             emptyAlert.addAction(emptyAction)
             present(emptyAlert, animated: true, completion: nil)
         }
-
-        let alert = UIAlertController(title: "You Got it!", message: "You Won \(score.text ?? "") times in this Level", preferredStyle: .alert)
+        if (Int(round.text!)! % 3 == 0 ) {
+        let alert = UIAlertController(title: "You Got it!", message: "You Won \(score.text ?? "") out of \(questionCount) times in this Level", preferredStyle: .alert)
         let action = UIAlertAction(title: "Okay", style: .default)
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
+        level.text = String(Int(level.text!)! + 1 )
+        score.text = String(0)
+            questionCount = 0
+        }
     }
 
 
