@@ -90,6 +90,8 @@ class ViewController: UIViewController {
             emptyAlert.addAction(emptyAction)
             present(emptyAlert, animated: true, completion: nil)
         }
+        
+        
         if (Int(round.text!)! % 3 == 0 ) {
         let alert = UIAlertController(title: "You Got it!", message: "You Won \(score.text ?? "") out of \(questionCount) times in this Level", preferredStyle: .alert)
         let action = UIAlertAction(title: "Okay", style: .default)
@@ -97,7 +99,7 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
         level.text = String(Int(level.text!)! + 1 )
         score.text = String(0)
-            questionCount = 0
+        questionCount = 0
         }
     }
 
